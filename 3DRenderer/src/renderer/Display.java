@@ -81,9 +81,10 @@ public class Display extends Canvas implements Runnable {
 			while (delta >= 1) {
 				update();
 				delta--;
+				render();
+				frames++;
 			}
-			render();
-			frames++;
+
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
@@ -113,6 +114,7 @@ public class Display extends Canvas implements Runnable {
 				new MyPolygon(Color.YELLOW, p1, p5, p8, p4),
 				new MyPolygon(Color.GREEN, p2, p6, p7, p3),
 				new MyPolygon(Color.MAGENTA, p4, p3, p7, p8));
+
 	}
 	
 	private void render() {
@@ -134,6 +136,7 @@ public class Display extends Canvas implements Runnable {
 	}
 	
 	private void update() {
-		
+		this.tetra.rotate(true, 1, 0, 0);
+
 	}
 }

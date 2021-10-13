@@ -33,4 +33,15 @@ public class PointConverter {
 		return newVal;
 		
 	}
+	
+	public static void rotateAxisX(MyPoint p, boolean CW, double degrees) {
+		
+		double radius = Math.sqrt(p.y*p.y + p.z*p.z);
+		double theta = Math.atan2(p.y, p.z);
+		theta += 2*Math.PI/360*degrees*(CW?1:-1);
+		p.y = radius * Math.sin(theta);
+		p.z = radius * Math.cos(theta);
+
+	}
+	
 }
