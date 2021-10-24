@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import renderer.input.Mouse;
 import renderer.point.MyPoint;
 import renderer.shapes.MyPolygon;
 import renderer.shapes.Tetrahedron;
@@ -24,11 +25,21 @@ public class Display extends Canvas implements Runnable {
 	
 	private Tetrahedron tetra;
 	
+	
+	private Mouse mouse;
+
+	
 	public Display() {
 		this.frame = new JFrame();
 		
 		Dimension size = new Dimension(WIDTH, HEIGHT);
 		this.setPreferredSize(size);
+		
+		this.mouse = new Mouse();
+		
+		this.addMouseListener(this.mouse);
+		this.addMouseMotionListener(this.mouse);
+		this.addMouseWheelListener(this.mouse);
 	}
 	
 	public static void main(String[] args) {
@@ -110,7 +121,7 @@ public class Display extends Canvas implements Runnable {
 //				Color.red,
 				new MyPolygon(Color.RED, p1, p2, p3, p4), 
 				new MyPolygon(Color.BLUE, p5, p6, p7, p8),
-				new MyPolygon(Color.WHITE, p1, p2, p5, p6),
+				new MyPolygon(Color.WHITE, p1, p2, p6, p5),
 				new MyPolygon(Color.YELLOW, p1, p5, p8, p4),
 				new MyPolygon(Color.GREEN, p2, p6, p7, p3),
 				new MyPolygon(Color.MAGENTA, p4, p3, p7, p8));
@@ -136,7 +147,7 @@ public class Display extends Canvas implements Runnable {
 	}
 	
 	private void update() {
-		this.tetra.rotate(true, 1, 0, 0);
+		this.tetra.rotate(true, 0, 1, 0);
 
 	}
 }
